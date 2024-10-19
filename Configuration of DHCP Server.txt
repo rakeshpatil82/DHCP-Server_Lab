@@ -1,0 +1,23 @@
+*****Configuration of DHCP Server ****** 
+1.IP address assigned to Router  
+Router>enable
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int fa 0/0
+Router(config-if)#ip address 192.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+Router(config-if)#exit 
+
+2.DHCP Pool
+DHCPServer(config)#ip dhcp pool Lan
+DHCPServer(dhcp-config)#ip dhcp pool 192.168.1.2-254
+DHCPServer(dhcp-config)#network 192.168.1.0 255.255.255.0
+DHCPServer(dhcp-config)#default router 192.168.1.1
+DHCPServer(dhcp-config)#dns-server 192.168.1.25 //dns server static ip address
+DHCPServer(dhcp-config)#dns-server 192.168.1.25 //dhcp excluded address 
